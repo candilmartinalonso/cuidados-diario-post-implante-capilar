@@ -128,9 +128,9 @@
     }
 
     .app-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      font-weight: 500;
     }
 
     /* Tarjetas mejoradas */
@@ -191,6 +191,11 @@
       transition: all var(--transition-fast);
       font-family: inherit;
     }
+    
+    .form-input[readonly] {
+        background-color: var(--bg-secondary);
+        cursor: not-allowed;
+    }
 
     .form-input:focus {
       outline: none;
@@ -198,66 +203,9 @@
       box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
     }
 
-    .form-help {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
-
-    /* Botones mejorados */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.875rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 500;
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      text-decoration: none;
-      font-family: inherit;
-      min-height: 44px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .btn-primary {
-      background: var(--accent-primary);
-      color: white;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      background: var(--accent-secondary);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: var(--bg-secondary);
-      color: var(--text-primary);
-      border: 1px solid var(--border-medium);
-    }
-
-    .btn-secondary:hover:not(:disabled) {
-      background: var(--border-light);
-    }
-
-    .btn-full {
-      width: 100%;
-    }
-
     /* Progress bar */
     .progress-container {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
     .progress-header {
@@ -481,21 +429,6 @@
       border-left: 4px solid var(--accent-info);
     }
 
-    /* Loading states */
-    .loading {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: white;
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
     /* Responsive design mejorado */
     @media (max-width: 768px) {
       .app-container {
@@ -524,44 +457,6 @@
       }
     }
 
-    /* Accessibility improvements */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* Focus styles */
-    .btn:focus,
-    .form-input:focus {
-      outline: 2px solid var(--accent-primary);
-      outline-offset: 2px;
-    }
-
-    /* Print styles */
-    @media print {
-      .app-container {
-        background: white;
-        padding: 0;
-      }
-      
-      .card {
-        box-shadow: none;
-        border: 1px solid #ccc;
-        break-inside: avoid;
-      }
-      
-      .btn {
-        display: none;
-      }
-    }
-
     /* Animation utilities */
     .fade-in {
       animation: fadeIn 0.5s ease-in-out;
@@ -571,15 +466,6 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .slide-in {
-      animation: slideIn 0.3s ease-out;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateX(-20px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
   </style>
 </head>
 <body>
@@ -588,7 +474,7 @@
       <!-- Header -->
       <header class="app-header">
         <h1 class="app-title">🌱 Cuidados Post Implante Capilar</h1>
-        <p class="app-subtitle">Seguimiento completo de tu recuperación día a día</p>
+        <p class="app-subtitle">Tu guía personal para una recuperación exitosa.</p>
       </header>
 
       <!-- Stats Cards -->
@@ -611,23 +497,19 @@
       <div class="card">
         <div class="card-header">
           <h2 class="card-title">
-            📅 Configuración
+            📅 Fecha del Implante
           </h2>
         </div>
         
         <form id="careForm" novalidate>
           <div class="form-group">
-            <label for="implantDate" class="form-label">Fecha del implante</label>
             <input 
               type="date" 
               id="implantDate" 
               class="form-input"
-              aria-describedby="dateHelp"
-              required
+              value="2025-06-04"
+              readonly
             >
-            <div id="dateHelp" class="form-help">
-              Selecciona la fecha de tu implante capilar (no puede ser futura)
-            </div>
           </div>
 
           <!-- Progress Bar -->
@@ -640,11 +522,6 @@
               <div class="progress-fill" id="progressFill" style="width: 0%"></div>
             </div>
           </div>
-
-          <button type="submit" class="btn btn-primary btn-full" id="showCareBtn">
-            <span id="btnText">🔍 Ver cuidados del día</span>
-            <span id="btnLoading" class="loading" style="display: none;"></span>
-          </button>
         </form>
       </div>
 
@@ -669,7 +546,6 @@
 
       // Utility functions
       const $ = (selector) => document.querySelector(selector);
-      const $$ = (selector) => document.querySelectorAll(selector);
       const createElement = (tag, className = '', content = '') => {
         const el = document.createElement(tag);
         if (className) el.className = className;
@@ -679,11 +555,7 @@
 
       // DOM elements
       const elements = {
-        form: $('#careForm'),
         dateInput: $('#implantDate'),
-        showCareBtn: $('#showCareBtn'),
-        btnText: $('#btnText'),
-        btnLoading: $('#btnLoading'),
         outputCard: $('#outputCard'),
         outputContent: $('#outputContent'),
         statsGrid: $('#statsGrid'),
@@ -698,28 +570,25 @@
 
       // Configuration
       const config = {
-        maxDate: new Date().toISOString().split('T')[0],
-        defaultDate: '2025-01-15',
-        animationDelay: 300,
         notificationDuration: 5000
       };
 
-      // Enhanced care data with more detailed instructions
+      // Enhanced and more specific care data
       const careData = [
         {
           maxDay: 3,
           phase: 'Crítica',
           color: '#e53e3e',
           tasks: [
-            'No tocar, rascar ni frotar la zona injertada bajo ninguna circunstancia',
-            'Dormir con la cabeza elevada 45° usando almohadas adicionales',
-            'Aplicar suero fisiológico estéril cada 2 horas con spray suave',
-            'Evitar completamente sol directo, calor, humo y gorras ajustadas',
-            'Tomar medicación prescrita: antibióticos, antiinflamatorios y analgésicos',
-            'Mantener hidratación óptima (2-3 litros de agua diarios)',
-            'Descanso absoluto, evitar estrés y movimientos bruscos de cabeza',
-            'No consumir alcohol, tabaco ni bebidas muy calientes',
-            'Aplicar compresas frías en frente y sienes si hay inflamación'
+            'No tocar, rascar ni frotar la zona injertada bajo ninguna circunstancia para no dañar los folículos.',
+            'Dormir en posición semi-sentado (ángulo de 45°) usando un cojín de viaje o varias almohadas para minimizar la hinchazón.',
+            'Pulverizar suero fisiológico estéril sobre la zona receptora y donante cada 1-2 horas para mantenerla hidratada.',
+            'Evitar exposición solar directa, calor extremo (saunas, secadores), polvo, humo y el uso de gorras o sombreros ajustados.',
+            'Seguir estrictamente la pauta de medicación prescrita: antibióticos, antiinflamatorios y analgésicos.',
+            'Beber al menos 2-3 litros de agua al día para favorecer la cicatrización y reducir la inflamación.',
+            'Reposo absoluto. Evitar movimientos bruscos, agacharse o levantar objetos pesados.',
+            'Prohibido el consumo de alcohol, tabaco y bebidas con cafeína, ya que interfieren en la cicatrización.',
+            'Si hay inflamación en la frente, aplicar compresas frías (nunca directamente sobre la zona injertada).'
           ]
         },
         {
@@ -727,15 +596,15 @@
           phase: 'Inicial',
           color: '#d69e2e',
           tasks: [
-            'Primer lavado suave con champú neutro sin sulfatos, sin frotar',
-            'Dejar que las costras se caigan naturalmente, no desprender',
-            'Evitar peines, cepillos y prendas que rocen la cabeza',
-            'Mantener abstinencia de alcohol y tabaco completamente',
-            'No piscinas, saunas, baños turcos ni exposición solar directa',
-            'Aplicar spray con factores de crecimiento si está prescrito',
-            'Dormir aún semiincorporado para reducir inflamación',
-            'Continuar con suero fisiológico 3-4 veces al día',
-            'Evitar ejercicio intenso y actividades que provoquen sudoración'
+            'Realizar el primer lavado según las instrucciones de la clínica, usando el champú especial (pH neutro, sin sulfatos) y aplicando con toques suaves, sin frotar.',
+            'Las costras comenzarán a formarse y caerán solas. No arrancarlas para evitar la pérdida de folículos.',
+            'No utilizar peines o cepillos en la zona. Evitar camisetas de cuello estrecho que puedan rozar al ponerlas/quitarlas.',
+            'Continuar con abstinencia total de alcohol y tabaco.',
+            'Prohibido sumergirse en piscinas, mar o usar saunas y baños turcos por riesgo de infección.',
+            'Aplicar los productos post-operatorios recomendados (sprays, espumas con factores de crecimiento) según la pauta.',
+            'Seguir durmiendo con la cabeza elevada para controlar la inflamación residual.',
+            'Continuar con la hidratación con suero fisiológico, aunque con menor frecuencia (3-4 veces al día).',
+            'Evitar cualquier tipo de ejercicio físico o actividad que provoque sudoración.'
           ]
         },
         {
@@ -743,14 +612,14 @@
           phase: 'Estabilización',
           color: '#d69e2e',
           tasks: [
-            'Lavados más frecuentes con esponja suave para eliminar residuos',
-            'No ejercer presión con gorras, cascos o almohadas duras',
-            'Iniciar ejercicio muy ligero: paseos cortos y estiramientos',
-            'Consultar médico si persiste picor intenso o enrojecimiento',
-            'Dieta rica en antioxidantes: frutas y verduras frescas variadas',
-            'Comenzar masajes muy suaves en cuero cabelludo circundante',
-            'Protección solar obligatoria con sombrero de ala ancha',
-            'Hidratación cutánea con productos recomendados por especialista'
+            'Realizar lavados diarios con la yema de los dedos, con movimientos circulares muy suaves para ayudar a que las últimas costras se desprendan.',
+            'Se puede empezar a usar gorras holgadas para protegerse del sol, pero sin que ejerzan presión.',
+            'Introducir ejercicio muy ligero como paseos cortos. Evitar deportes de contacto o de alta intensidad.',
+            'Es normal sentir algo de picor. Si es muy intenso o el enrojecimiento persiste, contactar con la clínica.',
+            'Fomentar una dieta rica en antioxidantes: frutos rojos, brócoli, espinacas, etc.',
+            'Se pueden iniciar masajes muy suaves en la zona de la nuca (donante) para mejorar la circulación, nunca en la zona receptora.',
+            'La protección solar es obligatoria. Usar sombreros o protector solar específico para cuero cabelludo si se va a estar al aire libre.',
+            'Mantener la piel de la zona hidratada con los productos recomendados por el especialista.'
           ]
         },
         {
@@ -758,15 +627,15 @@
           phase: 'Recuperación',
           color: '#38a169',
           tasks: [
-            'Lavado normal pero sin frotar bruscamente la zona injertada',
-            'Ejercicio moderado evitando sudoración excesiva prolongada',
-            'Protección solar constante: crema SPF 50+ o gorra',
-            'Efluvio telógeno normal (caída temporal), mantener calma',
-            'Dieta equilibrada: proteínas, vitaminas A, C, E y minerales',
-            'Suplementos de colágeno y queratina según indicación médica',
-            'Evitar tintes, permanentes y tratamientos químicos agresivos',
-            'Fotografías de seguimiento para documentar progreso',
-            'Primera consulta de control médico programada'
+            'Se puede volver a la rutina de lavado normal, pero siempre con champús suaves y sin frotar con agresividad.',
+            'Se puede retomar el ejercicio moderado, pero limpiando el sudor de la frente para que no escurra hacia la zona injertada.',
+            'La protección solar sigue siendo crucial. Aplicar crema SPF 50+ si hay exposición prolongada.',
+            'Comienza la fase de "shock loss" (efluvio telógeno): el pelo injertado se cae. Es un proceso totalmente normal y necesario.',
+            'Asegurar una dieta equilibrada rica en proteínas (carne, pescado, huevos), vitaminas (A, C, E) y minerales (hierro, zinc).',
+            'Consultar con el médico la posibilidad de tomar suplementos de colágeno, queratina o biotina.',
+            'Evitar por completo tintes, decoloraciones, permanentes y otros tratamientos químicos agresivos.',
+            'Tomar las primeras fotografías de seguimiento para comparar la evolución en los próximos meses.',
+            'Acudir a la primera consulta de revisión con la clínica.'
           ]
         },
         {
@@ -774,14 +643,14 @@
           phase: 'Crecimiento Inicial',
           color: '#38a169',
           tasks: [
-            'Masajes suaves circulares 2-3 veces por semana (5-10 minutos)',
-            'Suplementos específicos: biotina, zinc, hierro y Omega-3',
-            'Terapia de luz LED roja: 3 sesiones semanales de 15 minutos',
-            'Control médico mensual para evaluar evolución',
-            'Considerar PRP (plasma rico en plaquetas) si está indicado',
-            'Mesoterapia capilar con vitaminas según recomendación',
-            'Ejercicio regular moderado para mejorar circulación',
-            'Técnicas de relajación para reducir estrés (yoga, meditación)'
+            'Realizar masajes suaves con las yemas de los dedos en la zona receptora para estimular el riego sanguíneo (5-10 min, 2-3 veces/semana).',
+            'Considerar suplementación específica para el cabello: biotina, zinc, hierro, Saw Palmetto y Omega-3, siempre bajo supervisión médica.',
+            'Algunas clínicas recomiendan terapias de luz LED roja (LLLT) para acelerar el crecimiento. Consultar viabilidad.',
+            'Acudir al control médico mensual para que el especialista evalúe la correcta evolución.',
+            'Es un buen momento para iniciar tratamientos complementarios como el PRP (Plasma Rico en Plaquetas) si fue recomendado.',
+            'La mesoterapia capilar con un cóctel de vitaminas puede ser un gran aliado en esta fase.',
+            'El ejercicio regular moderado mejora la circulación general, lo que beneficia a los folículos.',
+            'Practicar técnicas de relajación (yoga, meditación, mindfulness) para mantener el estrés bajo control.'
           ]
         },
         {
@@ -789,15 +658,15 @@
           phase: 'Desarrollo',
           color: '#3182ce',
           tasks: [
-            'Primeros signos visibles de crecimiento folicular',
-            'Documentar progreso con fotografías mensuales',
-            'Productos capilares sin sulfatos, parabenos ni alcohol',
-            'Introducir Minoxidil si está recomendado y es bien tolerado',
-            'Ejercicios de relajación y técnicas de manejo del estrés',
-            'Dieta mediterránea rica en antioxidantes y ácidos grasos',
-            'Masajes con aceites naturales (jojoba, argán) semanalmente',
-            'Evitar exposición prolongada a cloro de piscinas',
-            'Mantener rutina de sueño regular (7-8 horas diarias)'
+            'Los primeros cabellos nuevos (finos y cortos, como vello) empiezan a ser visibles. ¡Paciencia!',
+            'Continuar con la documentación fotográfica mensual para apreciar los cambios.',
+            'Usar exclusivamente productos capilares suaves: sin sulfatos, sin parabenos, sin siliconas y sin alcohol.',
+            'Si el médico lo pautó, es el momento de empezar a aplicar Minoxidil tópico para fortalecer el crecimiento.',
+            'El manejo del estrés es fundamental, ya que el cortisol elevado puede afectar negativamente al crecimiento del cabello.',
+            'Adoptar una dieta de estilo mediterráneo: rica en verduras, frutas, legumbres, pescado azul y aceite de oliva virgen extra.',
+            'Realizar un masaje semanal con aceites naturales tibios (jojoba, argán, romero) antes del lavado.',
+            'Si se va a la piscina, aclarar el cabello con agua dulce inmediatamente después para eliminar el cloro.',
+            'Mantener una rutina de sueño estable y de calidad (7-8 horas diarias).'
           ]
         },
         {
@@ -805,14 +674,14 @@
           phase: 'Consolidación',
           color: '#3182ce',
           tasks: [
-            'Aumento notable en densidad y grosor del cabello',
-            'Comparar evolución con fotografías del mes anterior',
-            'Masajes con aceite de ricino o romero cada 3-4 días',
-            'Evitar tintes agresivos, preferir productos naturales',
-            'Evaluación hormonal y nutricional con especialista',
-            'Considerar bioestimulación con factores de crecimiento',
-            'Ejercicio cardiovascular regular para mejorar circulación',
-            'Suplementación con vitaminas del complejo B'
+            'El cabello nuevo empieza a ganar grosor y longitud. La densidad mejora notablemente.',
+            'Comparar las fotografías actuales con las del inicio. Los cambios ya son evidentes.',
+            'Se pueden introducir masajes con aceite de ricino (muy denso, mezclar con otro más ligero) para nutrir y fortalecer.',
+            'Si se desea teñir el pelo, optar por tintes vegetales o sin amoníaco para no dañar los nuevos folículos.',
+            'Realizar una analítica de sangre para comprobar niveles de ferritina, zinc, vitamina D y B12.',
+            'Continuar con las sesiones de bioestimulación (PRP, mesoterapia) según el plan de tratamiento.',
+            'El ejercicio cardiovascular (correr, nadar, bicicleta) es excelente para maximizar el riego sanguíneo al cuero cabelludo.',
+            'Asegurar un buen aporte de vitaminas del complejo B, fundamentales para el metabolismo del folículo piloso.'
           ]
         },
         {
@@ -820,14 +689,14 @@
           phase: 'Maduración',
           color: '#667eea',
           tasks: [
-            'Crecimiento consolidado y uniforme en toda la zona',
-            'Rutina de lavado con champú suave y acondicionador',
-            'Opcional: micropigmentación para mayor densidad visual',
-            'Vitaminas específicas según análisis de sangre',
-            'Revisión trimestral y ajustes del tratamiento',
-            'Fotografías de comparación con el estado inicial',
-            'Mantenimiento con tratamientos de mesoterapia',
-            'Evaluación de satisfacción y posibles retoques'
+            'El crecimiento está más consolidado y el cabello tiene un aspecto más natural y uniforme.',
+            'Establecer una rutina de lavado definitiva con un champú de calidad y un acondicionador para mantener la hidratación.',
+            'Si se busca un extra de densidad visual, se puede valorar la micropigmentación capilar como complemento.',
+            'Ajustar la suplementación vitamínica en función de los resultados de las analíticas y la recomendación médica.',
+            'Programar revisiones trimestrales con el especialista para seguir la fase final de maduración.',
+            'Tomar fotografías de comparación del antes y el después del año completo.',
+            'Valorar si son necesarias sesiones de mantenimiento con tratamientos como la mesoterapia.',
+            'Evaluar el nivel de satisfacción con el resultado y discutir con el médico la posibilidad de futuros retoques si fueran necesarios.'
           ]
         },
         {
@@ -835,14 +704,14 @@
           phase: 'Mantenimiento',
           color: '#764ba2',
           tasks: [
-            'Resultado definitivo alcanzado, mantener rutina',
-            'Cuidados de higiene y nutrición como hábitos permanentes',
-            'Consultar ante cualquier cambio, caída o irritación',
-            'Valorar retoques estéticos o densificadores opcionales',
-            'Protección solar permanente en actividades al aire libre',
-            'Revisiones anuales para monitoreo a largo plazo',
-            'Mantener estilo de vida saludable y manejo del estrés',
-            'Compartir experiencia para ayudar a otros pacientes'
+            'El resultado final se alcanza entre los 12 y 18 meses. ¡A disfrutar del resultado!',
+            'Mantener los hábitos saludables de higiene y nutrición de forma permanente para cuidar tanto el pelo injertado como el nativo.',
+            'Consultar con el especialista ante cualquier cambio inesperado, caída masiva o irritación persistente.',
+            'Se pueden usar fibras capilares o productos densificadores para ocasiones especiales si se desea un look de máxima densidad.',
+            'La protección solar del cuero cabelludo debe ser un hábito para toda la vida en exposiciones prolongadas.',
+            'Programar revisiones anuales para un monitoreo a largo plazo y prevenir futuros problemas.',
+            'Continuar con un estilo de vida activo y un buen manejo del estrés.',
+            'Si te sientes cómodo, compartir tu experiencia puede ayudar y animar a otras personas en su proceso.'
           ]
         }
       ];
@@ -852,60 +721,16 @@
 
       // Initialize app
       function init() {
-        setupEventListeners();
-        setInitialValues();
-        loadSavedData();
-      }
-
-      function setupEventListeners() {
-        elements.form.addEventListener('submit', handleFormSubmit);
-        elements.dateInput.addEventListener('change', handleDateChange);
-        
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-          if (e.ctrlKey && e.key === 'Enter') {
-            e.preventDefault();
-            handleFormSubmit(e);
-          }
-        });
-      }
-
-      function setInitialValues() {
-        elements.dateInput.max = config.maxDate;
-        elements.dateInput.value = config.defaultDate;
-      }
-
-      function loadSavedData() {
-        try {
-          const savedDate = localStorage.getItem('implantDate');
-          if (savedDate && isValidDate(savedDate)) {
-            elements.dateInput.value = savedDate;
-            updateDisplay();
-          }
-        } catch (error) {
-          console.warn('Could not load saved data:', error);
-        }
-      }
-
-      function saveData() {
-        try {
-          localStorage.setItem('implantDate', elements.dateInput.value);
-        } catch (error) {
-          console.warn('Could not save data:', error);
-        }
-      }
-
-      function isValidDate(dateString) {
-        const date = new Date(dateString);
-        const today = new Date();
-        return date instanceof Date && !isNaN(date) && date <= today;
+        updateDisplay();
+        showNotification('Datos de recuperación cargados.', 'success');
       }
 
       function daysSince(dateStr) {
         const msPerDay = 1000 * 60 * 60 * 24;
         const implantDate = new Date(dateStr);
         const today = new Date();
-        return Math.floor((today - implantDate) / msPerDay);
+        // Ajustar para que el día del implante sea el día 1
+        return Math.floor((today - implantDate) / msPerDay) + 1;
       }
 
       function getCareForDay(day) {
@@ -949,7 +774,7 @@
         
         elements.daysSinceValue.textContent = day;
         elements.progressValue.textContent = `${Math.round(progress)}%`;
-        elements.nextMilestoneValue.textContent = nextMilestone ? `${nextMilestone - day} días` : 'Completado';
+        elements.nextMilestoneValue.textContent = nextMilestone ? `Día ${nextMilestone}` : 'Completado';
         
         // Update progress bar
         elements.progressFill.style.width = `${progress}%`;
@@ -990,11 +815,12 @@
         if (nextMilestone) {
           const daysToMilestone = nextMilestone - day;
           const milestoneEl = createElement('div', 'milestone');
-          milestoneEl.textContent = `⏰ Faltan ${daysToMilestone} día${daysToMilestone !== 1 ? 's' : ''} para el próximo hito del día ${nextMilestone}`;
+
+          milestoneEl.textContent = `⏰ Faltan ${daysToMilestone} día${daysToMilestone !== 1 ? 's' : ''} para el próximo hito (día ${nextMilestone})`;
           elements.outputContent.appendChild(milestoneEl);
         } else {
           const completedEl = createElement('div', 'milestone');
-          completedEl.textContent = '🎉 ¡Felicitaciones! Has completado todas las fases principales de recuperación';
+          completedEl.textContent = '🎉 ¡Felicitaciones! Has completado las fases principales de recuperación';
           elements.outputContent.appendChild(completedEl);
         }
       }
@@ -1014,46 +840,6 @@
         // Show output card with animation
         elements.outputCard.style.display = 'block';
         elements.outputCard.classList.add('fade-in');
-        
-        saveData();
-      }
-
-      function handleFormSubmit(e) {
-        e.preventDefault();
-        
-        if (!elements.dateInput.value) {
-          showNotification('Por favor selecciona una fecha de implante.', 'error');
-          elements.dateInput.focus();
-          return;
-        }
-        
-        if (!isValidDate(elements.dateInput.value)) {
-          showNotification('La fecha no puede ser futura. Por favor selecciona una fecha válida.', 'error');
-          elements.dateInput.focus();
-          return;
-        }
-        
-        // Show loading state
-        elements.btnText.style.display = 'none';
-        elements.btnLoading.style.display = 'inline-block';
-        elements.showCareBtn.disabled = true;
-        
-        // Simulate processing time for better UX
-        setTimeout(() => {
-          updateDisplay();
-          showNotification('Cuidados actualizados correctamente', 'success');
-          
-          // Reset button state
-          elements.btnText.style.display = 'inline';
-          elements.btnLoading.style.display = 'none';
-          elements.showCareBtn.disabled = false;
-        }, config.animationDelay);
-      }
-
-      function handleDateChange() {
-        if (elements.dateInput.value && isValidDate(elements.dateInput.value)) {
-          updateDisplay();
-        }
       }
 
       // Initialize app when DOM is loaded
