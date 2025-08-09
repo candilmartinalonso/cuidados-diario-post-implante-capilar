@@ -1,864 +1,452 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Aplicación completa para el seguimiento de cuidados post implante capilar con recordatorios, progreso visual y guías detalladas">
-  <meta name="keywords" content="implante capilar, cuidados post operatorios, recuperación, seguimiento">
-  <meta name="author" content="Hair Care App">
-  <title>Cuidados Diario Post Implante Capilar - Seguimiento Completo</title>
-  
-  <!-- Preconnect para mejorar rendimiento -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiQ3VpZGFkb3MgUG9zdCBJbXBsYW50ZSBDYXBpbGFyIiwic2hvcnRfbmFtZSI6IkNhcGlsYXJDYXJlIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNlYWYyZjgiLCJ0aGVtZV9jb2xvciI6IiMyODc0YTYiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRJNElpQm9aV2xuYUhROUlqRXlPQ0lpSUhacFpYZENiM2c5SWpBZ01DQXhNamd1TURBd01EQXhNamd1TURBd01EQWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStQR05wY21Oc1pTQmplRDBpTmpRaUlHTjVQU0kyTkNJZ2NqMGlOVEFpSUdacGJHdzlJaU15T0RjMFlUWWlMejQ4TDNOMlp6ND0iLCJzaXplcyI6IjEyOHgxMjgiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
-  
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOC4wMDAwMTI4LjAwMDAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxjaXJjbGUgY3g9IjY0IiBjeT0iNjQiIHI9IjUwIiBmaWxsPSIjMjg3NGE2Ii8+PC9zdmc+">
-  
-  <style>
-    /* Variables CSS mejoradas */
-    :root {
-      --bg-primary: #f8fafc;
-      --bg-secondary: #e2e8f0;
-      --bg-card: #ffffff;
-      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --text-primary: #1a202c;
-      --text-secondary: #4a5568;
-      --text-muted: #718096;
-      --accent-primary: #3182ce;
-      --accent-secondary: #2c5282;
-      --accent-success: #38a169;
-      --accent-warning: #d69e2e;
-      --accent-error: #e53e3e;
-      --accent-info: #3182ce;
-      --border-light: #e2e8f0;
-      --border-medium: #cbd5e0;
-      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      --radius-sm: 0.375rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --radius-xl: 1rem;
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --transition-fast: 0.15s ease-in-out;
-      --transition-normal: 0.3s ease-in-out;
-      --transition-slow: 0.5s ease-in-out;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aplicación web para el seguimiento de cuidados post implante capilar con progreso visual y guías detalladas.">
+    <meta name="keywords" content="implante capilar, cuidados post operatorios, recuperación, seguimiento, hair transplant">
+    <meta name="author" content="Gemini AI Optimization">
+    <title>Cuidados del Pelo - Seguimiento Post Implante</title>
 
-    /* Dark mode variables */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-primary: #1a202c;
-        --bg-secondary: #2d3748;
-        --bg-card: #2d3748;
-        --text-primary: #f7fafc;
-        --text-secondary: #e2e8f0;
-        --text-muted: #a0aec0;
-        --border-light: #4a5568;
-        --border-medium: #718096;
-      }
-    }
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojOGI1Y2ZmOyIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiM3NjRiYTI7IiAvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3Qgd2lkdGg9IjEyOCIgaGVpZ2h0PSIxMjgiIHJ4PSIyNCIgZmlsbD0idXJsKCNncmFkKSIgLz48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTgwLjMsNDYuNmMxLjUtMS44LDMuOS0yLjksNi40LTIuOWMyLjUsMCw0LjksMS4xLDYuNCwyLjljMy4zLDQuMSwzLjEsMTAuMi0wLjUsMTQuMmMtMS4yLDEuMy0yLjYsMi4zLTMuOSwzLjFjLTAuMSwwLjMtMC4yLDAuNi0wLjNCMSwzLjEsMTAuMi0wLjUsMTQuMmMtMS4yLDEuMy0yLjYsMi4zLTMuOSwzLjFjLTAuMSwwLjMtMC4yLDAuNi0wLjMsMC45Yy0wLjIsMC41LTAuNCwxLTAuNiwxLjVjLTEuOSw0LjktNi40LDguNS0xMS43LDkuMmMtMC41LDAtMSwwLjEtMS41LDAuMWMtNS4zLDAuNy0xMC40LTEuOC0xMy4zLTYuMWMtMC43LTEtMS4zLTIuMS0xLjgtMy4zYy0wLjctMS42LTEuMS0zLjMtMS4xLTQuOWMwLTIuNSwxLTUsMi42LTdjMS4zLTEuNywzLTNsNC41LTMuNmMxLjgtMS4xLDMuNy0yLDQuOC0zLjRjMS4xLTEuNCwxLjctMywyLjEtNC44YzAuMy0xLjMsMC41LTIuNywwLjUtNC4xYzAtMS41LTAuMi0zLTAuOC00LjRjLTEuMy0zLjItNC4yLTUuNS03LjctNS45Yy0zLjUtMC40LTYuOSwxLjEtOC44LDMuOWMtMC42LDAuOS0xLjEsMS45LTEuNCwzYy0wLjEsMC40LTAuMSwwLjktMC4xLDEuM2MwLDIuMSwwLjgsNC4xLDIuMiw1LjZjMS4xLDEuMiwxLjgsMS45LDIuOSwyLjljMS4xLDEsMi4xLDEuNSwzLjEsMi4xYzAuMywwLjIsMC41LDAuMywwLjgsMC41YzEuOCwxLjEsMy4zLDIuNyw0LjMsNC41YzAuNSwwLjksMC44LDEuOSwwLjksMi45YzAuMSwxLjUtMC4xLDMtMC41LDQuNGMtMC45LDMuMy0zLjEsMTAuMi0wLjUsMTQuMmMtMS4yLDEuMy0yLjYsMi4zLTMuOSwzLjFjLTAuMSwwLjMtMC4yLDAuNi0wLjMsMC45Yy0wLjIsMC41LTAuNCwxLTAuNiwxLjVjLTEuOSw0LjktNi40LDguNS0xMS43LDkuMmMtMC41LDAtMSwwLjEtMS41LDAuMWMtNS4zLDAuNy0xMC40LTEuOC0xMy4zLTYuMWMtMC43LTEtMS4zLTIuMS0xLjgtMy4zYy0wLjctMS42LTEuMS0zLjMtMS4xLTQuOWMwLTIuNSwxLTUsMi42LTdjMS4zLTEuNywzLTNsNC41LTMuNmMxLjgtMS4xLDMuNy0yLDQuOC0zLjRjMS4xLTEuNCwxLjctMywyLjEtNC44YzAuMy0xLjMsMC41LTIuNywwLjUtNC4xYzAtMS41LTAuMi0zLTAuOC00LjRjLTEuMy0zLjItNC4yLTUuNS03LjctNS45Yy0zLjUtMC40LTYuOSwxLjEtOC44LDMuOWMtMC42LDAuOS0xLjEsMS45LTEuNCwzYy0wLjEsMC40LTAuMSwwLjktMC4xLDEuM2MwLDIuMSwwLjgsNC4xLDIuMiw1LjZjMS4xLDEuMiwxLjgsMS45LDIuOSwyLjljMS4xLDEsMi4xLDEuNSwzLjEsMi4xYzAuMywwLjIsMC41LDAuMywwLjgsMC41YzEuOCwxLjEsMy4zLDIuNyw0LjMsNC41YzAuNSwwLjksMC44LDEuOSwwLjksMi45YzAuMSwxLjUtMC4xLDMtMC41LDQuNGMtMC45LDMuMy0zLjUsNS44LTYuOCw2LjVjLTAuMywwLTAuNywwLjEtMSwwLjFjLTMuMywwLjctNi41LTAuOS04LjYtMy40Yy0xLjYtMS45LTIuNi00LjMtMi42LTYuOWMwLTEuNSwwLjMtMywwLjktNC40YzAuNC0xLDEtMS45LDEuNi0yLjdjMC4yLTAuMywwLjUtMC41LDAuNy0wLjhsMC4xLTAuMmMwLjEtMC4xLDAuMi0wLjIsMC4yLTAuM2MwLjMtMC40LDAuMy0xLTAuMS0xLjNjLTAuNC0wLjMtMS0wLjMtMS4zLDAuMWMtMC4xLDAuMS0wLjIsMC4yLTAuMywwLjNjLTAuMSwwLjEtMC4yLDAuMi0wLjMsMC4zYy0wLjgsMS0xLjUsMi0yLjEsMy4xYy0wLjcsMS4yLTEsMi41LTEsMy45YzAsMy4xLDEuMiw2LDMuMyw4LjJjMi44LDMsNi44LDQuOCwxMSw0LjNjMC40LDAsMC44LDAsMS4yLTAuMWM0LjItMC45LDcuOC0zLjgsOS40LTcuOGMwLjUtMS4zLDAuOC0yLjcsMC44LTQuMWMwLTEtMC4yLTIuMS0wLjYtMy4xYy0wLjEtMC4zLTAuMy0wLjYtMC40LTAuOWMtMC4zLTAuOC0wLjctMS42LTEuMi0yLjNjLTEuMy0yLTIuOS0zLjYtNC44LTQuN2MtMC40LTAuMi0wLjgtMC41LTEuMi0wLjdjLTEuMi0wLjctMi40LTEuMy0zLjYtMi4xYy0xLjQtMS0yLjQtMS41LTMuNi0yLjRjLTIuMy0xLjctMy45LTMuOS00LjYtNi42Yy0wLjQtMS41LTAuNC0zLjEtMC4xLTQuNmMwLjYtMy4xLDMuMS01LjYsNi4xLTYuMWMzLTAuNSw2LDEsNy45LDMuM2MwLjUsMC42LDEsMS4zLDEuMywxLjljMC4xLDAuMywwLjIsMC41LDAuMywwLjljMC4xLDAuMiwwLjEsMC40LDAuMSwwLjZjMCwxLjQtMC40LDIuOC0xLjMsNC4xYy0wLjcsMS0xLjUsMS44LTIuNSwyLjRjLTEuMywwLjktMi44LDEuNS0zLjUsMi43Yy0wLjgsMS4yLTEuMSwyLjYtMC44LDMuOWMwLjIsMSwwLjcsMS45LDEuNCwyLjdjMi4yLDIsNS42LDIsNy44LDBjMi4yLTIsMi4yLTUuMywwLTcuM0w4MC4zLDQ2LjZ6Ii8+PC9zdmc+">
 
-    /* Reset y base */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
+    <style>
+        :root {
+            --bg-primary: #11111b;
+            --bg-secondary: #1e1e2e;
+            --bg-card: #181825;
+            --bg-gradient: linear-gradient(135deg, #8b5cff 0%, #764ba2 100%);
+            --text-primary: #cdd6f4;
+            --text-secondary: #a6adc8;
+            --text-muted: #6c7086;
+            --accent-primary: #8b5cff;
+            --accent-secondary: #cba6f7;
+            --accent-success: #a6e3a1;
+            --accent-warning: #f9e2af;
+            --accent-error: #f38ba8;
+            --accent-info: #89b4fa;
+            --border-color: rgba(148, 163, 184, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-    body {
-      font-family: var(--font-family);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      font-weight: 400;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-    }
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Layout principal */
-    .app-container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: var(--bg-gradient);
-      padding: 1rem;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    .main-content {
-      flex: 1;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-    }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
 
-    /* Header mejorado */
-    .app-header {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding: 2rem 1rem;
-      background: var(--bg-card);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-lg);
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.95);
-    }
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
 
-    .app-title {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: var(--accent-primary);
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+        .app-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
 
-    .app-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      font-weight: 500;
-    }
+        .app-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
 
-    /* Tarjetas mejoradas */
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid var(--border-light);
-      transition: all var(--transition-normal);
-    }
+        .app-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
 
-    .card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 6px var(--shadow-color);
+            margin-bottom: 1.5rem;
+            transition: transform var(--transition), box-shadow var(--transition);
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px var(--shadow-color);
+        }
 
-    .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border-light);
-    }
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
 
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+        .stat-item {
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            color: var(--accent-primary);
+            line-height: 1.2;
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
 
-    /* Formulario mejorado */
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--bg-secondary);
+            border-radius: 2px;
+        }
+        .timeline-progress {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            width: 4px;
+            background: var(--bg-gradient);
+            border-radius: 2px;
+            transition: height 1s var(--transition);
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 1.5rem;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 4px solid var(--bg-secondary);
+            background-color: var(--bg-card);
+            transition: var(--transition);
+        }
+        .timeline-item.active .timeline-dot {
+            background-color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: scale(1.1);
+        }
+        .timeline-item.completed .timeline-dot {
+            background-color: var(--accent-success);
+            border-color: var(--accent-success);
+        }
+        .timeline-content {
+            background-color: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+        }
+        .timeline-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .timeline-phase {
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.5rem;
+            color: white;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
 
-    .form-label {
-      display: block;
-      font-weight: 500;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
+        .care-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .care-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+        }
+        .care-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-top: 4px;
+            color: var(--accent-info);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .form-input {
-      width: 100%;
-      padding: 0.875rem 1rem;
-      font-size: 1rem;
-      border: 2px solid var(--border-light);
-      border-radius: var(--radius-md);
-      background: var(--bg-card);
-      color: var(--text-primary);
-      transition: all var(--transition-fast);
-      font-family: inherit;
-    }
-    
-    .form-input[readonly] {
-        background-color: var(--bg-secondary);
-        cursor: not-allowed;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
-    }
-
-    /* Progress bar */
-    .progress-container {
-      margin-bottom: 1rem;
-    }
-
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-
-    .progress-label {
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-
-    .progress-percentage {
-      font-weight: 600;
-      color: var(--accent-primary);
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 8px;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-primary), var(--accent-success));
-      border-radius: var(--radius-sm);
-      transition: width var(--transition-slow);
-      position: relative;
-    }
-
-    .progress-fill::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    /* Output mejorado */
-    .output-container {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-    }
-
-    .output-header {
-      background: var(--bg-gradient);
-      color: white;
-      padding: 1rem 1.5rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .output-content {
-      padding: 1.5rem;
-      min-height: 200px;
-    }
-
-    .day-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--accent-primary);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .phase-badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: white;
-      margin-left: 0.5rem;
-    }
-
-    .care-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .care-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border-light);
-      transition: all var(--transition-fast);
-    }
-
-    .care-item:last-child {
-      border-bottom: none;
-    }
-
-    .care-item:hover {
-      background: var(--bg-secondary);
-      margin: 0 -1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      border-radius: var(--radius-sm);
-    }
-
-    .care-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--accent-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 600;
-      flex-shrink: 0;
-      margin-top: 0.125rem;
-    }
-
-    .care-text {
-      flex: 1;
-      color: var(--text-primary);
-      line-height: 1.5;
-    }
-
-    /* Milestone */
-    .milestone {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: linear-gradient(135deg, var(--accent-info), var(--accent-primary));
-      color: white;
-      border-radius: var(--radius-md);
-      font-weight: 500;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Stats cards */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: var(--bg-card);
-      padding: 1.5rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-      border: 1px solid var(--border-light);
-      transition: all var(--transition-normal);
-    }
-
-    .stat-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent-primary);
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    /* Notifications */
-    .notification {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      padding: 1rem 1.5rem;
-      max-width: 400px;
-      z-index: 1000;
-      transform: translateX(100%);
-      transition: transform var(--transition-normal);
-    }
-
-    .notification.show {
-      transform: translateX(0);
-    }
-
-    .notification-success {
-      border-left: 4px solid var(--accent-success);
-    }
-
-    .notification-error {
-      border-left: 4px solid var(--accent-error);
-    }
-
-    .notification-info {
-      border-left: 4px solid var(--accent-info);
-    }
-
-    /* Responsive design mejorado */
-    @media (max-width: 768px) {
-      .app-container {
-        padding: 0.5rem;
-      }
-      
-      .card {
-        padding: 1rem;
-        margin-bottom: 1rem;
-      }
-      
-      .app-header {
-        padding: 1.5rem 1rem;
-        margin-bottom: 1.5rem;
-      }
-      
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .notification {
-        top: 0.5rem;
-        right: 0.5rem;
-        left: 0.5rem;
-        max-width: none;
-      }
-    }
-
-    /* Animation utilities */
-    .fade-in {
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+        .notification {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(200%);
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 5px 15px var(--shadow-color);
+            z-index: 1000;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            border-left: 4px solid;
+        }
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .notification-success { border-color: var(--accent-success); }
+        .notification-error { border-color: var(--accent-error); }
+        .notification-info { border-color: var(--accent-info); }
+    </style>
 </head>
 <body>
-  <div class="app-container">
-    <div class="main-content">
-      <!-- Header -->
-      <header class="app-header">
-        <h1 class="app-title">🌱 Cuidados Post Implante Capilar</h1>
-        <p class="app-subtitle">Tu guía personal para una recuperación exitosa.</p>
-      </header>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">Cuidados del Pelo</h1>
+            <p class="app-subtitle">Tu asistente personal para una recuperación capilar exitosa.</p>
+        </header>
 
-      <!-- Stats Cards -->
-      <div class="stats-grid" id="statsGrid" style="display: none;">
-        <div class="stat-card">
-          <div class="stat-value" id="daysSinceValue">-</div>
-          <div class="stat-label">Días transcurridos</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="progressValue">-</div>
-          <div class="stat-label">Progreso</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-value" id="nextMilestoneValue">-</div>
-          <div class="stat-label">Próximo hito</div>
-        </div>
-      </div>
-
-      <!-- Input Card -->
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">
-            📅 Fecha del Implante
-          </h2>
-        </div>
-        
-        <form id="careForm" novalidate>
-          <div class="form-group">
-            <input 
-              type="date" 
-              id="implantDate" 
-              class="form-input"
-              value="2025-06-04"
-              readonly
-            >
-          </div>
-
-          <!-- Progress Bar -->
-          <div class="progress-container" id="progressContainer" style="display: none;">
-            <div class="progress-header">
-              <span class="progress-label">Progreso de recuperación</span>
-              <span class="progress-percentage" id="progressPercentage">0%</span>
+        <!-- Main Dashboard (visible by default) -->
+        <main id="dashboard">
+            <!-- Stats Card -->
+            <div class="card fade-in">
+                <div class="card-header">
+                    <h2 class="card-title">📈 Tu Progreso</h2>
+                    <!-- Reset button removed -->
+                </div>
+                <div class="card-content">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div id="implantDateValue" class="stat-value" style="font-size: 1.25rem; color: var(--accent-info);">-</div>
+                            <div class="stat-label">Fecha de Injerto</div>
+                        </div>
+                        <div class="stat-item">
+                            <div id="daysSinceValue" class="stat-value">-</div>
+                            <div class="stat-label">Días Transcurridos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div id="progressValue" class="stat-value">-</div>
+                            <div class="stat-label">Recuperación</div>
+                        </div>
+                        <div class="stat-item">
+                            <div id="nextMilestoneValue" class="stat-value">-</div>
+                            <div class="stat-label">Próximo Hito</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="progress-bar">
-              <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-            </div>
-          </div>
-        </form>
-      </div>
 
-      <!-- Output Card -->
-      <div class="card output-container" id="outputCard" style="display: none;">
-        <div class="output-header">
-          <span>📋 Cuidados recomendados</span>
-        </div>
-        <div class="output-content" id="outputContent" aria-live="polite">
-          <!-- Content will be populated by JavaScript -->
-        </div>
-      </div>
+            <!-- Timeline Card -->
+            <div class="card fade-in">
+                <div class="card-header">
+                    <h2 class="card-title">🗓️ Línea de Tiempo de Recuperación</h2>
+                </div>
+                <div class="card-content">
+                    <div class="timeline">
+                        <div class="timeline-line"></div>
+                        <div id="timelineProgress" class="timeline-progress"></div>
+                        <div id="timeline-container">
+                            <!-- Timeline items will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-  </div>
 
-  <!-- Notification container -->
-  <div id="notificationContainer"></div>
+    <div id="notificationContainer"></div>
 
-  <script>
+    <script>
     (() => {
-      'use strict';
+        'use strict';
 
-      // Utility functions
-      const $ = (selector) => document.querySelector(selector);
-      const createElement = (tag, className = '', content = '') => {
-        const el = document.createElement(tag);
-        if (className) el.className = className;
-        if (content) el.textContent = content;
-        return el;
-      };
+        // --- CONFIGURATION & DATA ---
+        const FIXED_IMPLANT_DATE = '2025-06-04';
+        const MAX_RECOVERY_DAYS = 365;
 
-      // DOM elements
-      const elements = {
-        dateInput: $('#implantDate'),
-        outputCard: $('#outputCard'),
-        outputContent: $('#outputContent'),
-        statsGrid: $('#statsGrid'),
-        daysSinceValue: $('#daysSinceValue'),
-        progressValue: $('#progressValue'),
-        nextMilestoneValue: $('#nextMilestoneValue'),
-        progressContainer: $('#progressContainer'),
-        progressFill: $('#progressFill'),
-        progressPercentage: $('#progressPercentage'),
-        notificationContainer: $('#notificationContainer')
-      };
+        const careData = [
+            { day: 1, maxDay: 3, phase: 'Crítica', color: '#f38ba8', title: 'Días 1-3: Fase Crítica', tasks: [ 'No tocar, rascar ni frotar la zona injertada.', 'Dormir semi-sentado (45°) para minimizar hinchazón.', 'Pulverizar suero fisiológico cada 1-2 horas.', 'Evitar sol, calor, polvo y gorras ajustadas.', 'Seguir pauta de medicación (antibióticos, antiinflamatorios).', 'Beber 2-3 litros de agua al día.', 'Reposo absoluto, no agacharse ni levantar peso.', 'Prohibido alcohol, tabaco y cafeína.' ] },
+            { day: 4, maxDay: 10, phase: 'Inicial', color: '#f9e2af', title: 'Días 4-10: Caída de Costras', tasks: [ 'Realizar primer lavado según instrucciones de la clínica (toques suaves).', 'Las costras caerán solas, no arrancarlas.', 'Evitar peines y camisetas de cuello estrecho.', 'Abstinencia total de alcohol y tabaco.', 'Prohibido piscinas, mar o saunas.', 'Aplicar productos post-operatorios recomendados.', 'Continuar durmiendo con cabeza elevada.', 'Evitar cualquier tipo de ejercicio físico.' ] },
+            { day: 11, maxDay: 30, phase: 'Recuperación', color: '#a6e3a1', title: 'Días 11-30: Shock Loss', tasks: [ 'Lavar diariamente con yemas de los dedos, movimientos suaves.', 'Se puede usar gorras holgadas para proteger del sol.', 'Iniciar ejercicio muy ligero (paseos).', 'Comienza la fase de "shock loss" (caída del pelo injertado), es normal.', 'Dieta rica en proteínas, vitaminas y minerales.', 'Acudir a la primera revisión en la clínica.', 'No usar tintes ni tratamientos químicos.', 'Tomar primeras fotos de seguimiento.' ] },
+            { day: 31, maxDay: 90, phase: 'Crecimiento Inicial', color: '#89b4fa', title: 'Meses 1-3: Primeros Brotes', tasks: [ 'Los primeros cabellos nuevos (finos y cortos) empiezan a ser visibles.', 'Realizar masajes suaves en la zona receptora para estimular circulación.', 'Considerar tratamientos como PRP o mesoterapia si se recomendó.', 'Usar productos capilares suaves (sin sulfatos, parabenos, siliconas).', 'Empezar a aplicar Minoxidil si fue pautado por el médico.', 'Controlar el estrés, es crucial para el crecimiento.', 'Documentar con fotos mensuales.' ] },
+            { day: 91, maxDay: 180, phase: 'Consolidación', color: '#cba6f7', title: 'Meses 3-6: Aumento de Densidad', tasks: [ 'El cabello nuevo gana grosor y longitud. La densidad mejora.', 'Se puede teñir el pelo con tintes vegetales o sin amoníaco.', 'Realizar analítica de sangre para comprobar niveles de ferritina, zinc, etc.', 'El ejercicio cardiovascular es excelente para el riego sanguíneo.', 'Continuar con las sesiones de bioestimulación (PRP).', 'Los cambios ya son muy evidentes al comparar fotos.' ] },
+            { day: 181, maxDay: 365, phase: 'Maduración', color: '#8b5cff', title: 'Meses 6-12: Resultado Visible', tasks: [ 'El crecimiento está consolidado, el aspecto es más natural.', 'Establecer una rutina de lavado definitiva con productos de calidad.', 'Evaluar el resultado y discutir con el médico si se necesitan retoques.', 'Programar revisiones trimestrales con el especialista.', 'Comparar las fotos del año completo. ¡Disfruta del cambio!' ] },
+            { day: 366, maxDay: Infinity, phase: 'Mantenimiento', color: '#a6adc8', title: 'Año 1 en adelante: Cuidado a Largo Plazo', tasks: [ 'El resultado final se alcanza entre los 12 y 18 meses.', 'Mantener hábitos saludables de higiene y nutrición.', 'La protección solar del cuero cabelludo debe ser un hábito.', 'Programar revisiones anuales para monitoreo a largo plazo.', 'Compartir tu experiencia puede ayudar a otros.' ] }
+        ];
 
-      // Configuration
-      const config = {
-        notificationDuration: 5000
-      };
+        // --- DOM ELEMENTS ---
+        const $ = (selector) => document.querySelector(selector);
+        const elements = {
+            dashboard: $('#dashboard'),
+            implantDateValue: $('#implantDateValue'),
+            daysSinceValue: $('#daysSinceValue'),
+            progressValue: $('#progressValue'),
+            nextMilestoneValue: $('#nextMilestoneValue'),
+            timelineContainer: $('#timeline-container'),
+            timelineProgress: $('#timelineProgress'),
+            notificationContainer: $('#notificationContainer')
+        };
 
-      // Enhanced and more specific care data
-      const careData = [
-        {
-          maxDay: 3,
-          phase: 'Crítica',
-          color: '#e53e3e',
-          tasks: [
-            'No tocar, rascar ni frotar la zona injertada bajo ninguna circunstancia para no dañar los folículos.',
-            'Dormir en posición semi-sentado (ángulo de 45°) usando un cojín de viaje o varias almohadas para minimizar la hinchazón.',
-            'Pulverizar suero fisiológico estéril sobre la zona receptora y donante cada 1-2 horas para mantenerla hidratada.',
-            'Evitar exposición solar directa, calor extremo (saunas, secadores), polvo, humo y el uso de gorras o sombreros ajustados.',
-            'Seguir estrictamente la pauta de medicación prescrita: antibióticos, antiinflamatorios y analgésicos.',
-            'Beber al menos 2-3 litros de agua al día para favorecer la cicatrización y reducir la inflamación.',
-            'Reposo absoluto. Evitar movimientos bruscos, agacharse o levantar objetos pesados.',
-            'Prohibido el consumo de alcohol, tabaco y bebidas con cafeína, ya que interfieren en la cicatrización.',
-            'Si hay inflamación en la frente, aplicar compresas frías (nunca directamente sobre la zona injertada).'
-          ]
-        },
-        {
-          maxDay: 10,
-          phase: 'Inicial',
-          color: '#d69e2e',
-          tasks: [
-            'Realizar el primer lavado según las instrucciones de la clínica, usando el champú especial (pH neutro, sin sulfatos) y aplicando con toques suaves, sin frotar.',
-            'Las costras comenzarán a formarse y caerán solas. No arrancarlas para evitar la pérdida de folículos.',
-            'No utilizar peines o cepillos en la zona. Evitar camisetas de cuello estrecho que puedan rozar al ponerlas/quitarlas.',
-            'Continuar con abstinencia total de alcohol y tabaco.',
-            'Prohibido sumergirse en piscinas, mar o usar saunas y baños turcos por riesgo de infección.',
-            'Aplicar los productos post-operatorios recomendados (sprays, espumas con factores de crecimiento) según la pauta.',
-            'Seguir durmiendo con la cabeza elevada para controlar la inflamación residual.',
-            'Continuar con la hidratación con suero fisiológico, aunque con menor frecuencia (3-4 veces al día).',
-            'Evitar cualquier tipo de ejercicio físico o actividad que provoque sudoración.'
-          ]
-        },
-        {
-          maxDay: 14,
-          phase: 'Estabilización',
-          color: '#d69e2e',
-          tasks: [
-            'Realizar lavados diarios con la yema de los dedos, con movimientos circulares muy suaves para ayudar a que las últimas costras se desprendan.',
-            'Se puede empezar a usar gorras holgadas para protegerse del sol, pero sin que ejerzan presión.',
-            'Introducir ejercicio muy ligero como paseos cortos. Evitar deportes de contacto o de alta intensidad.',
-            'Es normal sentir algo de picor. Si es muy intenso o el enrojecimiento persiste, contactar con la clínica.',
-            'Fomentar una dieta rica en antioxidantes: frutos rojos, brócoli, espinacas, etc.',
-            'Se pueden iniciar masajes muy suaves en la zona de la nuca (donante) para mejorar la circulación, nunca en la zona receptora.',
-            'La protección solar es obligatoria. Usar sombreros o protector solar específico para cuero cabelludo si se va a estar al aire libre.',
-            'Mantener la piel de la zona hidratada con los productos recomendados por el especialista.'
-          ]
-        },
-        {
-          maxDay: 30,
-          phase: 'Recuperación',
-          color: '#38a169',
-          tasks: [
-            'Se puede volver a la rutina de lavado normal, pero siempre con champús suaves y sin frotar con agresividad.',
-            'Se puede retomar el ejercicio moderado, pero limpiando el sudor de la frente para que no escurra hacia la zona injertada.',
-            'La protección solar sigue siendo crucial. Aplicar crema SPF 50+ si hay exposición prolongada.',
-            'Comienza la fase de "shock loss" (efluvio telógeno): el pelo injertado se cae. Es un proceso totalmente normal y necesario.',
-            'Asegurar una dieta equilibrada rica en proteínas (carne, pescado, huevos), vitaminas (A, C, E) y minerales (hierro, zinc).',
-            'Consultar con el médico la posibilidad de tomar suplementos de colágeno, queratina o biotina.',
-            'Evitar por completo tintes, decoloraciones, permanentes y otros tratamientos químicos agresivos.',
-            'Tomar las primeras fotografías de seguimiento para comparar la evolución en los próximos meses.',
-            'Acudir a la primera consulta de revisión con la clínica.'
-          ]
-        },
-        {
-          maxDay: 60,
-          phase: 'Crecimiento Inicial',
-          color: '#38a169',
-          tasks: [
-            'Realizar masajes suaves con las yemas de los dedos en la zona receptora para estimular el riego sanguíneo (5-10 min, 2-3 veces/semana).',
-            'Considerar suplementación específica para el cabello: biotina, zinc, hierro, Saw Palmetto y Omega-3, siempre bajo supervisión médica.',
-            'Algunas clínicas recomiendan terapias de luz LED roja (LLLT) para acelerar el crecimiento. Consultar viabilidad.',
-            'Acudir al control médico mensual para que el especialista evalúe la correcta evolución.',
-            'Es un buen momento para iniciar tratamientos complementarios como el PRP (Plasma Rico en Plaquetas) si fue recomendado.',
-            'La mesoterapia capilar con un cóctel de vitaminas puede ser un gran aliado en esta fase.',
-            'El ejercicio regular moderado mejora la circulación general, lo que beneficia a los folículos.',
-            'Practicar técnicas de relajación (yoga, meditación, mindfulness) para mantener el estrés bajo control.'
-          ]
-        },
-        {
-          maxDay: 90,
-          phase: 'Desarrollo',
-          color: '#3182ce',
-          tasks: [
-            'Los primeros cabellos nuevos (finos y cortos, como vello) empiezan a ser visibles. ¡Paciencia!',
-            'Continuar con la documentación fotográfica mensual para apreciar los cambios.',
-            'Usar exclusivamente productos capilares suaves: sin sulfatos, sin parabenos, sin siliconas y sin alcohol.',
-            'Si el médico lo pautó, es el momento de empezar a aplicar Minoxidil tópico para fortalecer el crecimiento.',
-            'El manejo del estrés es fundamental, ya que el cortisol elevado puede afectar negativamente al crecimiento del cabello.',
-            'Adoptar una dieta de estilo mediterráneo: rica en verduras, frutas, legumbres, pescado azul y aceite de oliva virgen extra.',
-            'Realizar un masaje semanal con aceites naturales tibios (jojoba, argán, romero) antes del lavado.',
-            'Si se va a la piscina, aclarar el cabello con agua dulce inmediatamente después para eliminar el cloro.',
-            'Mantener una rutina de sueño estable y de calidad (7-8 horas diarias).'
-          ]
-        },
-        {
-          maxDay: 180,
-          phase: 'Consolidación',
-          color: '#3182ce',
-          tasks: [
-            'El cabello nuevo empieza a ganar grosor y longitud. La densidad mejora notablemente.',
-            'Comparar las fotografías actuales con las del inicio. Los cambios ya son evidentes.',
-            'Se pueden introducir masajes con aceite de ricino (muy denso, mezclar con otro más ligero) para nutrir y fortalecer.',
-            'Si se desea teñir el pelo, optar por tintes vegetales o sin amoníaco para no dañar los nuevos folículos.',
-            'Realizar una analítica de sangre para comprobar niveles de ferritina, zinc, vitamina D y B12.',
-            'Continuar con las sesiones de bioestimulación (PRP, mesoterapia) según el plan de tratamiento.',
-            'El ejercicio cardiovascular (correr, nadar, bicicleta) es excelente para maximizar el riego sanguíneo al cuero cabelludo.',
-            'Asegurar un buen aporte de vitaminas del complejo B, fundamentales para el metabolismo del folículo piloso.'
-          ]
-        },
-        {
-          maxDay: 365,
-          phase: 'Maduración',
-          color: '#667eea',
-          tasks: [
-            'El crecimiento está más consolidado y el cabello tiene un aspecto más natural y uniforme.',
-            'Establecer una rutina de lavado definitiva con un champú de calidad y un acondicionador para mantener la hidratación.',
-            'Si se busca un extra de densidad visual, se puede valorar la micropigmentación capilar como complemento.',
-            'Ajustar la suplementación vitamínica en función de los resultados de las analíticas y la recomendación médica.',
-            'Programar revisiones trimestrales con el especialista para seguir la fase final de maduración.',
-            'Tomar fotografías de comparación del antes y el después del año completo.',
-            'Valorar si son necesarias sesiones de mantenimiento con tratamientos como la mesoterapia.',
-            'Evaluar el nivel de satisfacción con el resultado y discutir con el médico la posibilidad de futuros retoques si fueran necesarios.'
-          ]
-        },
-        {
-          maxDay: Infinity,
-          phase: 'Mantenimiento',
-          color: '#764ba2',
-          tasks: [
-            'El resultado final se alcanza entre los 12 y 18 meses. ¡A disfrutar del resultado!',
-            'Mantener los hábitos saludables de higiene y nutrición de forma permanente para cuidar tanto el pelo injertado como el nativo.',
-            'Consultar con el especialista ante cualquier cambio inesperado, caída masiva o irritación persistente.',
-            'Se pueden usar fibras capilares o productos densificadores para ocasiones especiales si se desea un look de máxima densidad.',
-            'La protección solar del cuero cabelludo debe ser un hábito para toda la vida en exposiciones prolongadas.',
-            'Programar revisiones anuales para un monitoreo a largo plazo y prevenir futuros problemas.',
-            'Continuar con un estilo de vida activo y un buen manejo del estrés.',
-            'Si te sientes cómodo, compartir tu experiencia puede ayudar y animar a otras personas en su proceso.'
-          ]
-        }
-      ];
+        // --- APPLICATION LOGIC ---
+        const App = {
+            init() {
+                this.renderDashboard(FIXED_IMPLANT_DATE);
+                this.showNotification('Guía de cuidados cargada.', 'success');
+            },
+            
+            renderDashboard(dateStr) {
+                // Correctly create a UTC date to avoid timezone issues.
+                // Note: Months are 0-indexed in JavaScript (0=Jan, 5=Jun)
+                const [year, month, day] = dateStr.split('-').map(Number);
+                const implantDate = new Date(Date.UTC(year, month - 1, day));
 
-      // Milestone days for progress tracking
-      const milestones = [3, 10, 14, 30, 60, 90, 180, 365];
+                const today = new Date();
+                const todayUtc = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
 
-      // Initialize app
-      function init() {
-        updateDisplay();
-        showNotification('Datos de recuperación cargados.', 'success');
-      }
+                const diffTime = todayUtc - implantDate;
+                const daysSince = Math.max(0, Math.floor(diffTime / (1000 * 60 * 60 * 24))) + 1;
 
-      function daysSince(dateStr) {
-        const msPerDay = 1000 * 60 * 60 * 24;
-        const implantDate = new Date(dateStr);
-        const today = new Date();
-        // Ajustar para que el día del implante sea el día 1
-        return Math.floor((today - implantDate) / msPerDay) + 1;
-      }
+                // Populate the static date display, ensuring UTC is used for formatting.
+                const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+                elements.implantDateValue.textContent = implantDate.toLocaleDateString('es-ES', options);
 
-      function getCareForDay(day) {
-        if (day < 0) return null;
-        return careData.find(phase => day <= phase.maxDay);
-      }
+                this.updateStats(daysSince);
+                this.renderTimeline(daysSince);
+            },
 
-      function calculateProgress(day) {
-        const maxDays = 365;
-        return Math.min((day / maxDays) * 100, 100);
-      }
+            updateStats(daysSince) {
+                const progress = Math.min((daysSince / MAX_RECOVERY_DAYS) * 100, 100);
+                const nextMilestone = careData.find(phase => daysSince < phase.day);
 
-      function getNextMilestone(day) {
-        return milestones.find(milestone => day < milestone);
-      }
+                elements.daysSinceValue.textContent = daysSince;
+                elements.progressValue.textContent = `${Math.round(progress)}%`;
+                elements.nextMilestoneValue.textContent = nextMilestone ? `Día ${nextMilestone.day}` : 'Finalizado';
+            },
 
-      function showNotification(message, type = 'info') {
-        const notification = createElement('div', `notification notification-${type}`);
-        notification.innerHTML = `
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span>${message}</span>
-            <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: inherit;">×</button>
-          </div>
-        `;
-        
-        elements.notificationContainer.appendChild(notification);
-        
-        // Show notification
-        setTimeout(() => notification.classList.add('show'), 100);
-        
-        // Auto remove
-        setTimeout(() => {
-          notification.classList.remove('show');
-          setTimeout(() => notification.remove(), 300);
-        }, config.notificationDuration);
-      }
+            renderTimeline(currentDay) {
+                elements.timelineContainer.innerHTML = '';
+                let activePhaseRendered = false;
 
-      function updateStats(day) {
-        const progress = calculateProgress(day);
-        const nextMilestone = getNextMilestone(day);
-        
-        elements.daysSinceValue.textContent = day;
-        elements.progressValue.textContent = `${Math.round(progress)}%`;
-        elements.nextMilestoneValue.textContent = nextMilestone ? `Día ${nextMilestone}` : 'Completado';
-        
-        // Update progress bar
-        elements.progressFill.style.width = `${progress}%`;
-        elements.progressPercentage.textContent = `${Math.round(progress)}%`;
-        
-        // Show stats
-        elements.statsGrid.style.display = 'grid';
-        elements.progressContainer.style.display = 'block';
-      }
+                careData.forEach((phase, index) => {
+                    const isActive = currentDay >= phase.day && (careData[index+1] ? currentDay < careData[index+1].day : true);
+                    const isCompleted = currentDay >= (careData[index+1] ? careData[index+1].day : phase.day);
 
-      function renderCareInstructions(day, carePhase) {
-        elements.outputContent.innerHTML = '';
-        
-        // Day title with phase badge
-        const titleContainer = createElement('div', 'day-title');
-        titleContainer.innerHTML = `
-          📅 Día ${day}
-          <span class="phase-badge" style="background-color: ${carePhase.color};">
-            Fase ${carePhase.phase}
-          </span>
-        `;
-        elements.outputContent.appendChild(titleContainer);
-        
-        // Care list
-        const careList = createElement('ul', 'care-list');
-        carePhase.tasks.forEach((task, index) => {
-          const listItem = createElement('li', 'care-item');
-          listItem.innerHTML = `
-            <div class="care-icon">${index + 1}</div>
-            <div class="care-text">${task}</div>
-          `;
-          careList.appendChild(listItem);
-        });
-        elements.outputContent.appendChild(careList);
-        
-        // Next milestone info
-        const nextMilestone = getNextMilestone(day);
-        if (nextMilestone) {
-          const daysToMilestone = nextMilestone - day;
-          const milestoneEl = createElement('div', 'milestone');
+                    const item = document.createElement('div');
+                    item.className = 'timeline-item';
+                    if (isActive) item.classList.add('active');
+                    if (isCompleted) item.classList.add('completed');
+                    
+                    let careListHTML = '';
+                    if (isActive) {
+                        careListHTML = `<ul class="care-list">${phase.tasks.map(task => `
+                            <li class="care-item">
+                                <svg class="care-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>${task}</span>
+                            </li>`).join('')}
+                        </ul>`;
+                    }
+                    
+                    item.innerHTML = `
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">
+                                ${phase.title}
+                                <span class="timeline-phase" style="background-color: ${phase.color};">${phase.phase}</span>
+                            </div>
+                            ${careListHTML}
+                        </div>
+                    `;
+                    
+                    elements.timelineContainer.appendChild(item);
 
-          milestoneEl.textContent = `⏰ Faltan ${daysToMilestone} día${daysToMilestone !== 1 ? 's' : ''} para el próximo hito (día ${nextMilestone})`;
-          elements.outputContent.appendChild(milestoneEl);
-        } else {
-          const completedEl = createElement('div', 'milestone');
-          completedEl.textContent = '🎉 ¡Felicitaciones! Has completado las fases principales de recuperación';
-          elements.outputContent.appendChild(completedEl);
-        }
-      }
+                    if (isActive && !activePhaseRendered) {
+                        setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'center' }), 500);
+                        activePhaseRendered = true;
+                    }
+                });
+                
+                // Update timeline progress bar height after a short delay to allow rendering
+                setTimeout(() => {
+                    const totalHeight = elements.timelineContainer.offsetHeight;
+                    const progressPercentage = Math.min(currentDay / MAX_RECOVERY_DAYS, 1);
+                    elements.timelineProgress.style.height = `${progressPercentage * totalHeight}px`;
+                }, 100);
+            },
 
-      function updateDisplay() {
-        const day = daysSince(elements.dateInput.value);
-        const carePhase = getCareForDay(day);
-        
-        if (!carePhase) {
-          showNotification('Fecha inválida. Por favor selecciona una fecha válida.', 'error');
-          return;
-        }
-        
-        updateStats(day);
-        renderCareInstructions(day, carePhase);
-        
-        // Show output card with animation
-        elements.outputCard.style.display = 'block';
-        elements.outputCard.classList.add('fade-in');
-      }
+            showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                notification.textContent = message;
+                elements.notificationContainer.appendChild(notification);
 
-      // Initialize app when DOM is loaded
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-      } else {
-        init();
-      }
+                setTimeout(() => notification.classList.add('show'), 100);
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 500);
+                }, 4000);
+            }
+        };
 
-      // Service Worker registration for PWA functionality
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZXZlbnQgPT4ge2V2ZW50LndhaXRVbnRpbChzZWxmLnNraXBXYWl0aW5nKCkpO30pO3NlbGYuYWRkRXZlbnRMaXN0ZW5lcignYWN0aXZhdGUnLCBldmVudCA9PiB7ZXZlbnQud2FpdFVudGlsKHNlbGYuY2xpZW50cy5jbGFpbSgpKTt9KTs=')
-            .then(() => console.log('SW registered'))
-            .catch(() => console.log('SW registration failed'));
-        });
-      }
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => App.init());
 
     })();
-  </script>
+    </script>
 </body>
 </html>
